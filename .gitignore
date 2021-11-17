@@ -1,0 +1,6 @@
+target/*
+.classpath
+.mvn/
+.project
+.settings/*
+src/main/resources/application.properties
