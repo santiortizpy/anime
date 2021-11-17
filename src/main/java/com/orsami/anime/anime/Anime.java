@@ -18,6 +18,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.orsami.anime.review.Review;
+import com.orsami.anime.staff.Staff;
 import com.orsami.anime.studio.Studio;
 
 @Entity
@@ -63,8 +65,11 @@ public class Anime {
     private Studio studio;
 
 	
-	@Column(name="staff")
-	private String staff;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(name = "anime_staff",
+            joinColumns = { @JoinColumn(name = "id_anime") },
+            inverseJoinColumns = { @JoinColumn(name = "id_staff") })
+    private Set<Staff> staffs = new HashSet<>();
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(name = "anime_character",
@@ -73,6 +78,121 @@ public class Anime {
     private Set<Character> characters = new HashSet<>();
 
 	
-	@Column(name="review")
-	private String review;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(name = "anime_review",
+            joinColumns = { @JoinColumn(name = "id_anime") },
+            inverseJoinColumns = { @JoinColumn(name = "id_review") })
+    private Set<Review> review = new HashSet<>();
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public String getYears() {
+		return years;
+	}
+
+
+	public void setYears(String years) {
+		this.years = years;
+	}
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public int getEpisode() {
+		return episode;
+	}
+
+
+	public void setEpisode(int episode) {
+		this.episode = episode;
+	}
+
+
+	public String getTags() {
+		return tags;
+	}
+
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+
+	public Studio getStudio() {
+		return studio;
+	}
+
+
+	public void setStudio(Studio studio) {
+		this.studio = studio;
+	}
+
+
+	public Set<Staff> getStaffs() {
+		return staffs;
+	}
+
+
+	public void setStaffs(Set<Staff> staffs) {
+		this.staffs = staffs;
+	}
+
+
+	public Set<Character> getCharacters() {
+		return characters;
+	}
+
+
+	public void setCharacters(Set<Character> characters) {
+		this.characters = characters;
+	}
+
+
+	public Set<Review> getReview() {
+		return review;
+	}
+
+
+	public void setReview(Set<Review> review) {
+		this.review = review;
+	}
+	
+	
 }
