@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>anime</name>
-    <description>Blank project for GraalVM + Spring MVC</description>
+    <description>Project Spring web</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -96,7 +96,7 @@
                 <version>4.0.3</version>
                 <configuration>
                     <user>postgres</user>
-                    <password>1234</password>
+                    <password>postgres</password>
                 </configuration>
             </plugin>
         </plugins>

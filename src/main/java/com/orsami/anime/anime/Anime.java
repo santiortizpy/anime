@@ -21,6 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 import com.orsami.anime.review.Review;
 import com.orsami.anime.staff.Staff;
 import com.orsami.anime.studio.Studio;
+import com.orsami.anime.character.Character;
 
 @Entity
 @Table(name="anime")
@@ -40,7 +41,7 @@ public class Anime {
 			}
 			)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "anime_id_seq")
-	private long id;
+	private Long id;
 	
 	@Column(name="title")
 	private String title;
@@ -61,36 +62,36 @@ public class Anime {
 	private String tags;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "id_studio")
+    @JoinColumn(name = "studio_id")
     private Studio studio;
 
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(name = "anime_staff",
-            joinColumns = { @JoinColumn(name = "id_anime") },
-            inverseJoinColumns = { @JoinColumn(name = "id_staff") })
+            joinColumns = { @JoinColumn(name = "anime_id") },
+            inverseJoinColumns = { @JoinColumn(name = "staff_id") })
     private Set<Staff> staffs = new HashSet<>();
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(name = "anime_character",
-            joinColumns = { @JoinColumn(name = "id_anime") },
-            inverseJoinColumns = { @JoinColumn(name = "id_character") })
+            joinColumns = { @JoinColumn(name = "anime_id") },
+            inverseJoinColumns = { @JoinColumn(name = "character_id") })
     private Set<Character> characters = new HashSet<>();
 
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(name = "anime_review",
-            joinColumns = { @JoinColumn(name = "id_anime") },
-            inverseJoinColumns = { @JoinColumn(name = "id_review") })
+            joinColumns = { @JoinColumn(name = "anime_id") },
+            inverseJoinColumns = { @JoinColumn(name = "review_id") })
     private Set<Review> review = new HashSet<>();
 
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

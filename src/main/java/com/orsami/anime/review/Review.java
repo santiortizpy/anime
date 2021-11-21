@@ -37,7 +37,7 @@ public class Review {
 			}
 			)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "review_id_seq")
-	private long id;
+	private Long id;
 	
 	@Column(name="stars")
 	private int stars;
@@ -48,11 +48,13 @@ public class Review {
 	@Column(name="description")
 	private String description;
 
-	public long getId() {
+	
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

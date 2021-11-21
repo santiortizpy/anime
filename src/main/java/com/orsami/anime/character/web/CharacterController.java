@@ -35,7 +35,7 @@ public class CharacterController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public CharacterView getCoach(@PathVariable Long id) {
+    public CharacterView getCharacter(@PathVariable Long id) {
         return service.getCharacter(id);
     }
 
@@ -54,12 +54,12 @@ public class CharacterController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCoach(@PathVariable Long id){
+    public void deleteCharacter(@PathVariable Long id){
         service.delete(id);
     }
 
     @PutMapping("/{id}")
-    public CharacterView updateCoach(@PathVariable(name = "id") Long id,
+    public CharacterView updateCharacter(@PathVariable(name = "id") Long id,
                                  @RequestBody @Valid CharacterBaseReq req) {
         Character character = service.findCharacterOrThrow(id);
         return service.update(character, req);
